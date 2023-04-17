@@ -1,0 +1,12 @@
+#!/bin/bash
+# Uninstall haproxy
+sudo apt-get remove haproxy
+
+# Uninstall haproxy and its dependencies
+sudo apt-get remove --auto-remove haproxy
+
+#  Purging your config/data too
+sudo apt-get purge haproxy
+
+# Other option
+# sudo apt-get purge --auto-remove haproxy

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Configure your Nginx server.
+
+echo -e "\e[92m1. Update and install nginx\e[0m"
+apt-get update && apt-get -y install nginx
+
+# echo -e "\e[92m2. Allow HTTP\e[0m"
+# ufw allow 'Nginx HTTP'
+
+echo -e "\e[92m3. Print in index Holberton School\e[0m"
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+
+echo -e "\e[92m4. Redirect from new page\e[0m"
+CONFIG_PATH=/etc/nginx/sites-enabled/default
+OLD="server_name _;"
+NEW="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
+
+sed -i "/$OLD/a\\$NEW" $CONFIG_PATH
+
+echo -e "\e[92m5. Redirect from not found page\e[0m"
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+sed -i '/listen \[::\]:80 default_server;/a error_page 404 /custom_404.html;' $CONFIG_PATH
+# sed -i '/error_page 404 \/custom_404.html;/a location = /custom_404.html {root /usr/share/nginx/html; internal;}' $CONFIG_PATH
+
+echo -e "\e[92m5. Add header X-Served-By \e[0m"
+HEADER="\\\t\tadd_header X-Served-By $HOSTNAME always;"
+sed -i "48i $HEADER" $CONFIG_PATH
+
+echo -e "\e[92m6. Restart ngnix service\e[0m"
+service nginx restart

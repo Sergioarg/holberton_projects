@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Install load balancer with port 80
+echo -e "\e[92mInstall haproxy\e[0m"
+sudo apt-get -y update && sudo apt-get -y install haproxy
+
+HAPROXY_PATH="/etc/haproxy/haproxy.cfg"
+
+CONFIG="
+frontend 54.81.23.89
+    bind 0:80
+    default_backend backend_config
+
+backend backend_config
+    balance roundrobin
+    server web-01 54.81.23.89:80
+    server web-02 34.228.6.244:80"
+
+echo "$CONFIG" >> "$HAPROXY_PATH"
+
+echo -e "\e[92mRestart haproxy\e[0m"
+sudo /etc/init.d/haproxy restart

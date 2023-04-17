@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Check who is the user
+USR=$1
+sudo -u "$USR" whoami

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Script to configure UFW on servers
+
+sudo apt-get -y update && sudo apt-get -y install haproxy
+echo -e "\e[92mInstall ufw\e[0m"
+
+sudo ufw disable
+echo -e "\e[33mDisable ufw\e[0m"
+
+
+echo -e "\e[36mConfig ufw\e[0m"
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+sudo ufw allow 22/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 80/tcp
+
+sudo ufw enable
+echo -e "\e[92mEnable ufw\e[0m"

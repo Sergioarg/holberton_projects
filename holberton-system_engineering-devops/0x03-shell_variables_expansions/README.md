@@ -1,0 +1,1 @@
+In this part of projects we are going to handle variables in shell

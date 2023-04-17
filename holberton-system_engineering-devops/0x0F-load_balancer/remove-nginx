@@ -1,0 +1,11 @@
+#!/bin/bash
+# Script for remove nginx of the server
+
+echo -e "\e[31mRemove nginx\e[0m"
+sudo apt-get -y remove nginx nginx-common
+
+echo -e "\e[31mPurge nginx\e[0m"
+sudo apt-get -y purge nginx nginx-common
+
+echo -e "\e[31mDelete rest of nginx\e[0m"
+sudo apt-get -y autoremove

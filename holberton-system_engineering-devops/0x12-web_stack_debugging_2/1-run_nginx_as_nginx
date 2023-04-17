@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Fix nginx
+
+# Kill aparche
+pkill -f apache2
+# nginx must be running as nginx user
+chown nginx:nginx /etc/nginx/nginx.conf
+chmod 700 /etc/nginx/nginx.conf
+# nginx listening on all active IPs on port 8080
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+# start nginx
+sudo -u nginx service nginx start
