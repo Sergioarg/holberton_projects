@@ -17,6 +17,9 @@ alias delcommit='git reset --hard HEAD~1 && git push origin HEAD --force'
 alias gaa='f(){ git add .; git commit -m "$1"; git push; unset -f f; }; f'
 alias del_branch='f(){ git branch -d "$1" && git push origin --delete "$1"; unset -f f; }; f'
 alias rm_branch="git fetch -p && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch"
+alias rename_branch='f(){ git branch -m "$1" "$2" && git push origin --delete "$1"; unset -f f; }; f'
+alias rename_branch='f(){ git branch -m "$1" "$2" && git push origin --delete "$1" && git push origin HEAD; unset -f f; }; f'
+
 # Quick modification of bashrc file
 alias ebashrc='code ~/.bashrc'
 alias ubashrc='source ~/.bashrc'
