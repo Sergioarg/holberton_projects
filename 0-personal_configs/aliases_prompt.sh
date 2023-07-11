@@ -1,9 +1,3 @@
-# enable color support of ls and also add handy aliases
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Custom alias
 alias c='clear && clear'
 # Git alias
@@ -19,20 +13,14 @@ alias del_branch='f(){ git branch -d "$1" && git push origin --delete "$1"; unse
 alias rm_branch="git fetch -p && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch"
 alias rename_branch='f(){ git branch -m "$1" "$2" && git push origin --delete "$1"; unset -f f; }; f'
 alias rename_branch='f(){ git branch -m "$1" "$2" && git push origin --delete "$1" && git push origin HEAD; unset -f f; }; f'
+alias show_git_user='git config --get user.email && git config --get user.name'
+alias personal_git="git config --global user.name "sergioarg" && git config --global user.email sergio_ramos53@yahoo.com && show_git_user"
 
 # Quick modification of bashrc file
 alias ebashrc='code ~/.bashrc'
 alias ubashrc='source ~/.bashrc'
-# Style alias
-# Compile and excecution alias
-# Alias permission handling
-# Django aliases
-alias pm='python3 manage.py'
-alias runserver='python3 manage.py runserver'
 # Folder aliases
 alias fr='export FLASK_APP=app && export FLASK_ENV=development && flask run'
-
-# End custom alias
 
 # tmux config
 export TERM=xterm-256color
