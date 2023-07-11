@@ -13,8 +13,14 @@ alias del_branch='f(){ git branch -d "$1" && git push origin --delete "$1"; unse
 alias rm_branch="git fetch -p && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch"
 alias rename_branch='f(){ git branch -m "$1" "$2" && git push origin --delete "$1"; unset -f f; }; f'
 alias rename_branch='f(){ git branch -m "$1" "$2" && git push origin --delete "$1" && git push origin HEAD; unset -f f; }; f'
+
+# Git users
 alias show_git_user='git config --get user.email && git config --get user.name'
 alias personal_git="git config --global user.name "sergioarg" && git config --global user.email sergio_ramos53@yahoo.com && show_git_user"
+
+# Virtual Env Python3
+alias create_venv='python3 -m venv venv'
+alias start_venv='source venv/bin/activate'
 
 # Quick modification of bashrc file
 alias ebashrc='code ~/.bashrc'
@@ -46,8 +52,6 @@ ExitStatus()
 }
 
 PS1="${Green}┌(${Blue}Sergio${Green})-[${Green}\W${Green}]${Reset} \$(parse_git_branch)${Green}\n└$(ExitStatus)\$ ${Reset}"
-
-# Django functions
 
 # init virtuel event
 function startvenv(){
